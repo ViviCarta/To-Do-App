@@ -20,7 +20,21 @@ subhead_label = Label(root, text="Start your day productively.", font=("Arial", 
 subhead_label.pack()
 
 # Add the input frame
-frame1 = Frame(root, width=750, height=280, bd=1, relief="solid", bg="white")
+frame1 = Frame(root, width=750, height=280, bg="white")
 frame1.pack(pady=40)
+
+list_box = Listbox(frame1, width=100, height=16, font=("Arial", 14),
+                   fg="black", bd=1, relief="solid", cursor="mouse")
+list_box.pack(side="left", fill="both", expand=FALSE)
+
+scrollbar = Scrollbar(frame1)
+scrollbar.pack(side="right", fill="both")
+
+list_box.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=list_box.yview)
+
+# Add a functional add button
+add_button = Button(root, text="add task", width=50)
+add_button.pack(pady=20)
 
 root.mainloop()
