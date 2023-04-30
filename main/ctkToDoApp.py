@@ -26,17 +26,27 @@ class App(ctk.CTk):
         self.subheading.pack(pady=(5, 10))
 
         """Create scrollable frame"""
-        self.scrollable_frame = ctk.CTkScrollableFrame(master=self, width=750, height=300, fg_color="white",
-                                                       scrollbar_fg_color="white")
+        self.scrollable_frame = ctk.CTkScrollableFrame(self, width=750, height=300, corner_radius=10,
+                                                       fg_color="white", scrollbar_fg_color="white")
         self.scrollable_frame.pack(pady=20)
 
-        """Create an entry widget"""
+        """Create an entry widget within scrollable frame"""
         self.user_entry = ctk.CTkEntry(self.scrollable_frame, placeholder_text="Input task name here...",
-                                       corner_radius=0)
+                                       corner_radius=10, font=ctk.CTkFont("Arial", 16))
         self.user_entry.pack(fill="x")
 
-        """Add a add_button"""
-        self.add_button = ctk.CTkButton(self, text="add task", width=100,
+        """Create a frame where initial tasks are sent
+        to the not complete category"""
+        self.not_comp_frame = ctk.CTkFrame(self.scrollable_frame, fg_color="transparent")
+        self.not_comp_label = ctk.CTkLabel(self.not_comp_frame, text="Not Completed",
+                                           font=ctk.CTkFont("Arial", 18))
+
+        # Pack the frame and label
+        self.not_comp_frame.pack(padx=(0, 600), pady=20)
+        self.not_comp_label.pack()
+
+        """Add a functional button for adding tasks"""
+        self.add_button = ctk.CTkButton(self, text="Add Task", width=100,
                                         font=ctk.CTkFont("Arial", size=14, weight="bold"),
                                         command=self.add_task)
         self.add_button.pack(pady=20)
@@ -45,7 +55,7 @@ class App(ctk.CTk):
     def add_task(self):
         task = self.user_entry.get()
         task_label = ctk.CTkLabel(self.scrollable_frame, text=task)
-        task_label.pack()
+        task_label.pack(side="left")
         self.user_entry.delete(0, ctk.END)
 
 
