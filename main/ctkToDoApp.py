@@ -45,10 +45,11 @@ class App(ctk.CTk):
         self.not_comp_frame = ctk.CTkFrame(self.scrollable_frame, fg_color="transparent")
         self.not_comp_label = ctk.CTkLabel(self.not_comp_frame, text="Not Completed",
                                            font=ctk.CTkFont("Arial", 18))
-        self.task_listbox_1 = Listbox(self.not_comp_frame, width=10, height=5, font=("Arial", 14),
+        self.task_listbox_1 = Listbox(self.not_comp_frame, width=10, height=5,
+                                      font=("Arial", 14), justify="center",
                                       selectbackground="gray", selectmode="single")
 
-        # Pack the frame and label
+        # Pack the frame, label, and listbox
         self.not_comp_frame.pack()
         self.not_comp_label.pack(padx=(0, 600), pady=20)
         self.task_listbox_1.pack(fill="x")
@@ -58,25 +59,31 @@ class App(ctk.CTk):
         self.comp_frame = ctk.CTkFrame(self.scrollable_frame, fg_color="transparent")
         self.comp_label = ctk.CTkLabel(self.comp_frame, text="Completed",
                                        font=ctk.CTkFont("Arial", 18))
-        self.task_listbox_2 = Listbox(self.comp_frame, width=10, height=5, font=("Arial", 14),
+        self.task_listbox_2 = Listbox(self.comp_frame, width=10, height=5,
+                                      font=("Arial", 14), justify="center",
                                       selectbackground="gray", selectmode="single")
 
-        # Pack the frame and label
+        # Pack the frame, label, and listbox
         self.comp_frame.pack()
         self.comp_label.pack(padx=(0, 635), pady=20)
         self.task_listbox_2.pack(fill="x")
 
+        """Create a frame that will hold
+        all buttons but oriented side-by-side"""
+        self.button_frame = ctk.CTkFrame(self, width=100, fg_color="transparent")
+        self.button_frame.pack()
+
         """Add a functional button for adding tasks"""
-        self.add_button = ctk.CTkButton(self, text="Add Task", width=100,
+        self.add_button = ctk.CTkButton(self.button_frame, text="Add Task", width=100,
                                         font=ctk.CTkFont("Arial", size=14, weight="bold"),
                                         command=self.add_task)
-        self.add_button.pack(pady=20)
+        self.add_button.pack(side="left", padx=10)
 
         """Add a functional button that when
         clicked, will move selected task to completed
         category"""
-        self.check_button = ctk.CTkButton(self, text="✅", command=self.check, width=10)
-        self.check_button.pack()
+        self.check_button = ctk.CTkButton(self.button_frame, text="✅", command=self.check, width=10)
+        self.check_button.pack(side="left")
 
         """Define commands"""
 
