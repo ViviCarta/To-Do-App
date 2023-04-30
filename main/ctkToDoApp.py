@@ -1,7 +1,7 @@
 """Author: Venise Saron
 Professor: Corey Seliger
 Subject: SDEV140
-Last Revised: 4-26-2023
+Last Revised: 4-30-2023
 Purpose: This program is a GUI
 application of a simple To-Do List
 using Custom Tkinter."""
@@ -19,7 +19,7 @@ class App(ctk.CTk):
         self.title("Private To-Do's")
 
         # Create two empty lists
-        self.notcomp_list = []
+        self.not_comp_list = []
         self.comp_list = []
 
         """Add labels for main header and a subhead"""
@@ -99,14 +99,15 @@ class App(ctk.CTk):
         task = self.user_entry.get()
         self.user_entry.delete(0, ctk.END)
 
-        self.notcomp_list.append(task)
+        self.not_comp_list.append(task)
         self.task_listbox_1.insert(END, task)
 
     def check(self):
         """This command removes the selected task
-        and moves it under the completed category"""
+        from the not completed category and moves
+        it under the completed category"""
         task = str(self.task_listbox_1.get(ANCHOR))
-        if task in self.notcomp_list:
+        if task:
             self.comp_list.append(task)
             self.task_listbox_2.insert(END, task)
             self.task_listbox_1.delete(ANCHOR)
@@ -117,7 +118,7 @@ class App(ctk.CTk):
         category"""
         task_1 = str(self.task_listbox_1.get(ANCHOR))
         task_2 = str(self.task_listbox_2.get(ANCHOR))
-        if task_1 in self.notcomp_list or task_2 in self.comp_list:
+        if task_1 in self.not_comp_list or task_2 in self.comp_list:
             self.task_listbox_1.delete(ANCHOR)
             self.task_listbox_2.delete(ANCHOR)
 
