@@ -19,7 +19,7 @@ class App(ctk.CTk):
         self.title("Private To-Do's")
 
         # Create two empty lists
-        self.task_list = []
+        self.notcomp_list = []
         self.comp_list = []
 
         """Add labels for main header and a subhead"""
@@ -80,10 +80,15 @@ class App(ctk.CTk):
         self.add_button.pack(side="left", padx=10)
 
         """Add a functional button that when
-        clicked, will move selected task to completed
-        category"""
+        clicked, will move selected task to 
+        completed category"""
         self.check_button = ctk.CTkButton(self.button_frame, text="✅", command=self.check, width=10)
         self.check_button.pack(side="left")
+
+        """Add a functional button that when 
+        clicked, will delete selected task"""
+        self.delete_button = ctk.CTkButton(self.button_frame, text="🗑", command=self.delete, width=10)
+        self.delete_button.pack(side="left", padx=10)
 
         """Define commands"""
 
@@ -94,17 +99,27 @@ class App(ctk.CTk):
         task = self.user_entry.get()
         self.user_entry.delete(0, ctk.END)
 
-        self.task_list.append(task)
+        self.notcomp_list.append(task)
         self.task_listbox_1.insert(END, task)
 
     def check(self):
         """This command removes the selected task
         and moves it under the completed category"""
         task = str(self.task_listbox_1.get(ANCHOR))
-        if task in self.task_list:
+        if task in self.notcomp_list:
             self.comp_list.append(task)
             self.task_listbox_2.insert(END, task)
             self.task_listbox_1.delete(ANCHOR)
+
+    def delete(self):
+        """This command permanently deletes
+        the selected task regardless of
+        category"""
+        task_1 = str(self.task_listbox_1.get(ANCHOR))
+        task_2 = str(self.task_listbox_2.get(ANCHOR))
+        if task_1 in self.notcomp_list or task_2 in self.comp_list:
+            self.task_listbox_1.delete(ANCHOR)
+            self.task_listbox_2.delete(ANCHOR)
 
 
 if __name__ == "__main__":
