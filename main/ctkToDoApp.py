@@ -9,15 +9,6 @@ using Custom Tkinter."""
 import customtkinter as ctk
 
 
-class ListFrame(ctk.CTkScrollableFrame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
-
-        # add widgets onto the frame...
-        # self.label = ctk.CTkLabel(self)
-        # self.label.grid(row=0, column=0, padx=20)
-
-
 class App(ctk.CTk):
     """Displays the parent window."""
 
@@ -35,13 +26,29 @@ class App(ctk.CTk):
         self.subheading.pack(pady=(5, 10))
 
         """Create scrollable frame"""
-        self.scrollable_frame = ctk.CTkScrollableFrame(self, width=750, height=280)
+        self.scrollable_frame = ctk.CTkScrollableFrame(master=self, width=750, height=300, fg_color="white",
+                                                       scrollbar_fg_color="white")
         self.scrollable_frame.pack(pady=20)
 
+        """Create an entry widget"""
+        self.user_entry = ctk.CTkEntry(self.scrollable_frame, placeholder_text="Input task name here...",
+                                       corner_radius=0)
+        self.user_entry.pack(fill="x")
+
         """Add a add_button"""
-        self.add_button = ctk.CTkButton(self, text="add task", width=50)
+        self.add_button = ctk.CTkButton(self, text="add task", width=100,
+                                        font=ctk.CTkFont("Arial", size=14, weight="bold"),
+                                        command=self.add_task)
         self.add_button.pack(pady=20)
 
+        """Define commands"""
+    def add_task(self):
+        task = self.user_entry.get()
+        task_label = ctk.CTkLabel(self.scrollable_frame, text=task)
+        task_label.pack()
+        self.user_entry.delete(0, ctk.END)
 
-app = App()
-app.mainloop()
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
