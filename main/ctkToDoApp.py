@@ -10,13 +10,50 @@ from tkinter import *
 import customtkinter as ctk
 
 
-class App(ctk.CTk):
-    """Displays the parent window."""
+class LoginPage(ctk.CTkFrame):
+    """Displays login page."""
+    def __init__(self, master, controller):
+        ctk.CTkFrame.__init__(self, master)
 
-    def __init__(self):
-        super().__init__()
-        self.geometry("1050x750")
-        self.title("Private To-Do's")
+        """Add main header for login page"""
+        self.login_heading = ctk.CTkLabel(self, text="Login", font=ctk.CTkFont("Arial", size=35))
+        self.login_heading.place(x=230, y=230)
+
+        """Create a border frame for 
+        label and entry widgets"""
+        self.border_frame = ctk.CTkFrame(self, bg_color="transparent")
+        self.border_frame.pack(fill="both", expand="yes", padx=100, pady=100)
+
+        # Create label and entry widgets
+        self.username_label = ctk.CTkLabel(self.border_frame, text="Username", font=ctk.CTkFont("Arial", size=14))
+        self.username_entry = ctk.CTkEntry(self.border_frame, width=30, border_width=1)
+
+        self.password_label = ctk.CTkLabel(self.border_frame, text="Password", font=ctk.CTkFont("Arial", size=14))
+        self.password_entry = ctk.CTkEntry(self.border_frame, width=30, border_width=1)
+
+        # Pack the label and entry widgets
+        self.username_label.pack()
+        self.username_entry.pack()
+        self.password_label.pack()
+        self.password_entry.pack()
+
+        """Create button that will 
+        redirect to next page"""
+        self.next_button = ctk.CTkButton(self, text="Next", font=ctk.CTkFont("Arial", size=14),
+                                         command=lambda: controller.show_frame(ApplicationPage))
+        self.next_button.pack()
+
+
+class ApplicationPage(ctk.CTkFrame):
+    """Displays the main application page."""
+    def __init__(self, master, controller):
+        ctk.CTkFrame.__init__(self, master)
+
+        """Create button that will
+        go back to previous page"""
+        self.back_button = ctk.CTkButton(self, text="Back", font=ctk.CTkFont("Arial", size=14),
+                                         command=lambda: controller.show_frame(LoginPage))
+        self.back_button.pack()
 
         # Create two empty lists
         self.not_comp_list = []
@@ -121,6 +158,35 @@ class App(ctk.CTk):
         if task_1 in self.not_comp_list or task_2 in self.comp_list:
             self.task_listbox_1.delete(ANCHOR)
             self.task_listbox_2.delete(ANCHOR)
+
+
+class App(ctk.CTk):
+    """Displays the parent window."""
+
+    def __init__(self):
+        super().__init__()
+        self.geometry("1050x750")
+        self.title("Private To-Do's")
+
+        # Create a window
+        self.window = ctk.CTkFrame(self)
+        self.window.pack()
+
+        self.window.rowconfigure(0, minsize=500)
+        self.window.columnconfigure(0, minsize=800)
+
+        # Create a dictionary for multiple pages
+        self.frames = {}
+        for f in (LoginPage, ApplicationPage):
+            frame = f(self.window, self)
+            self.frames[f] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame(LoginPage)
+
+    def show_frame(self, page):
+        frame = self.frames[page]
+        frame.tkraise()
 
 
 if __name__ == "__main__":
