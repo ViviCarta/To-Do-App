@@ -15,21 +15,26 @@ class LoginPage(ctk.CTkFrame):
     def __init__(self, master, controller):
         ctk.CTkFrame.__init__(self, master)
 
-        """Add main header for login page"""
-        self.login_heading = ctk.CTkLabel(self, text="Login", font=ctk.CTkFont("Arial", size=35))
-        self.login_heading.place(x=230, y=230)
-
         """Create a border frame for 
         label and entry widgets"""
         self.border_frame = ctk.CTkFrame(self, bg_color="transparent")
         self.border_frame.pack(fill="both", expand="yes", padx=100, pady=100)
 
+        """Add main header and subhead 
+        for login page"""
+        self.login_heading = ctk.CTkLabel(self.border_frame, text="Login", font=ctk.CTkFont("Arial", size=35))
+        self.login_heading.pack(padx=10, pady=(40, 10))
+
+        self.login_subheading = ctk.CTkLabel(self.border_frame, text="Sign in to continue.",
+                                             font=ctk.CTkFont("Arial", size=14))
+        self.login_subheading.pack(pady=(5, 10))
+
         # Create label and entry widgets
         self.username_label = ctk.CTkLabel(self.border_frame, text="Username", font=ctk.CTkFont("Arial", size=14))
-        self.username_entry = ctk.CTkEntry(self.border_frame, width=30, border_width=1)
+        self.username_entry = ctk.CTkEntry(self.border_frame, width=200, border_width=1)
 
         self.password_label = ctk.CTkLabel(self.border_frame, text="Password", font=ctk.CTkFont("Arial", size=14))
-        self.password_entry = ctk.CTkEntry(self.border_frame, width=30, border_width=1)
+        self.password_entry = ctk.CTkEntry(self.border_frame, width=200, border_width=1)
 
         # Pack the label and entry widgets
         self.username_label.pack()
@@ -172,8 +177,8 @@ class App(ctk.CTk):
         self.window = ctk.CTkFrame(self)
         self.window.pack()
 
-        self.window.rowconfigure(0, minsize=500)
-        self.window.columnconfigure(0, minsize=800)
+        self.window.rowconfigure(0, minsize=750)
+        self.window.columnconfigure(0, minsize=1050)
 
         # Create a dictionary for multiple pages
         self.frames = {}
