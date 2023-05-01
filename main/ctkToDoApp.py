@@ -46,7 +46,7 @@ class LoginPage(ctk.CTkFrame):
         redirect to next page"""
         self.next_button = ctk.CTkButton(self, text="Next", font=ctk.CTkFont("Arial", size=14),
                                          command=lambda: controller.show_frame(ApplicationPage))
-        self.next_button.pack()
+        self.next_button.pack(pady=20)
 
 
 class ApplicationPage(ctk.CTkFrame):
@@ -58,7 +58,7 @@ class ApplicationPage(ctk.CTkFrame):
         go back to previous page"""
         self.back_button = ctk.CTkButton(self, text="Back", font=ctk.CTkFont("Arial", size=14),
                                          command=lambda: controller.show_frame(LoginPage))
-        self.back_button.pack()
+        self.back_button.pack(padx=(0, 650), pady=(20, 0))
 
         # Create two empty lists
         self.not_comp_list = []
