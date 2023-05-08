@@ -17,7 +17,7 @@ class LoginPage(ctk.CTkFrame):
 
         """Create a border frame for 
         label and entry widgets"""
-        self.border_frame = ctk.CTkFrame(self, bg_color="transparent")
+        self.border_frame = ctk.CTkFrame(self, fg_color="white")
         self.border_frame.pack(fill="both", expand="yes", padx=100, pady=100)
 
         """Add main header and subhead 
@@ -166,11 +166,12 @@ class ApplicationPage(ctk.CTkFrame):
 
 
 class App(ctk.CTk):
-    """Displays the parent window."""
+    """Displays the parent window of main app."""
 
     def __init__(self):
         super().__init__()
         self.geometry("1050x750")
+        self.resizable(False, False)
         self.title("Private To-Do's")
 
         # Create a window
