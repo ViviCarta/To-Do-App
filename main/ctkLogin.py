@@ -2,6 +2,7 @@
 for the main application"""
 import tkinter
 from tkinter import *
+from tkinter import messagebox
 import customtkinter as ctk
 from PIL import ImageTk, Image
 
@@ -250,6 +251,14 @@ class Login(ctk.CTk):
             """Displays the main application window"""
             main_app = ApplicationPage(self)
             main_app.grab_set()
+
+        elif username == "" and password == "":
+            """Displays a warning dialog box"""
+            messagebox.showwarning("Warning", "Please don't leave any empty fields!")
+
+        elif username != 'admin' and password != '1234':
+            """Displays an error dialog box"""
+            messagebox.showerror("Invalid", "Username and Password entered don't exist in the system.")
 
 
 if __name__ == "__main__":
