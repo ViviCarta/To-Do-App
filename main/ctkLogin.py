@@ -163,7 +163,7 @@ class ApplicationPage(tkinter.Toplevel):
         go back to previous page"""
         self.back_button = ctk.CTkButton(self.main_frame, text="Logout", width=100, corner_radius=6,
                                          font=ctk.CTkFont("Arial", size=14), fg_color="black",
-                                         hover_color="gray", text_color="white")
+                                         hover_color="gray", text_color="white", command=self.return_login)
         self.back_button.place(x=70, y=40)
 
         # Create two empty lists
@@ -281,6 +281,9 @@ class ApplicationPage(tkinter.Toplevel):
         if task_1 in self.not_comp_list or task_2 in self.comp_list:
             self.task_listbox_1.delete(ANCHOR)
             self.task_listbox_2.delete(ANCHOR)
+
+    def return_login(self):
+        ApplicationPage.destroy(self)
 
 
 class Login(ctk.CTk):
