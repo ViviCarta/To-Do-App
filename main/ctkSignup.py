@@ -25,7 +25,7 @@ class Signup(ctk.CTk):
 
         """Create a border frame for 
         label and entry widgets"""
-        self.border_frame = ctk.CTkFrame(self.background_label, width=500, height=600,
+        self.border_frame = ctk.CTkFrame(self.background_label, width=500, height=570,
                                          fg_color="white")
         self.border_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
 
@@ -72,42 +72,27 @@ class Signup(ctk.CTk):
                                             border_color="gray", show="•")
         self.password_entry2.place(x=120, y=355)
 
-        """Create a neat checkbox"""
-        self.check_var = ctk.StringVar(value="off")
-        self.checkbox = ctk.CTkCheckBox(self, text="I agree to the Terms & Conditions", command=self.checkbox_event,
-                                        variable=self.check_var, onvalue="on", offvalue="off", bg_color="white",
-                                        fg_color="black", text_color="black", font=ctk.CTkFont("Arial", size=14),
-                                        hover=False, checkmark_color="white")
-        self.checkbox.place(x=365, y=490)
-
         """Create a sign up button"""
         self.signup_button = ctk.CTkButton(self.border_frame, width=140, text="Sign Up", corner_radius=6,
                                            font=ctk.CTkFont("Arial", size=16), fg_color="black",
                                            hover_color="gray", text_color="white",
                                            command=self.signup)
-        self.signup_button.place(x=180, y=470)
+        self.signup_button.place(x=180, y=420)
 
         """Create divider label
         that separates the two
         buttons"""
         self.separator_label = ctk.CTkLabel(self.border_frame, bg_color="transparent", fg_color="transparent",
-                                            text="or", text_color="black",
-                                            font=ctk.CTkFont("Arial", size=16))
-        self.separator_label.place(x=240, y=505)
+                                            text="Already have an account?", text_color="black",
+                                            font=ctk.CTkFont("Arial", size=14))
+        self.separator_label.place(x=170, y=475)
 
         """Create a back to 
         login button"""
         self.return_button = ctk.CTkButton(self.border_frame, width=140, text="Return to Login", corner_radius=6,
                                            font=ctk.CTkFont("Arial", size=16), fg_color="black",
                                            hover_color="gray", text_color="white")
-        self.return_button.place(x=180, y=540)
-
-    def checkbox_event(self):
-        """Method for toggling the
-        checkbox, and will also
-        print the object's state in
-        the console"""
-        print("checkbox toggled, current value:", self.check_var.get())
+        self.return_button.place(x=180, y=520)
 
     def signup(self):
         """Method for creating
