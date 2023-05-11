@@ -149,7 +149,31 @@ class Signup(tkinter.Toplevel):
         password = self.password_entry1.get()
         confirm_pass = self.password_entry2.get()
 
-        if password == confirm_pass:
+        if username == "" and password == "" and confirm_pass == "":
+            """Shows a warning dialog box"""
+            messagebox.showwarning("Warning", "Please don't leave any empty fields!")
+
+        elif username == "" and password != "" and confirm_pass == "":
+            """Shows a warning dialog box"""
+            messagebox.showwarning("Warning", "Please don't leave any empty fields!")
+
+        elif username == "" and password == "" and confirm_pass != "":
+            """Shows a warning dialog box"""
+            messagebox.showwarning("Warning", "Please don't leave any empty fields!")
+
+        elif username != "" and password == "" and confirm_pass == "":
+            """Shows a warning dialog box"""
+            messagebox.showwarning("Warning", "Please don't leave passwords fields empty!")
+
+        elif username == "" and password == confirm_pass:
+            """Shows a warning dialog box"""
+            messagebox.showwarning("Warning", "Please don't leave username field empty!")
+
+        elif username != "" and password != confirm_pass:
+            """Shows an error dialog box"""
+            messagebox.showerror("Invalid", "Both passwords don't match! Try again.")
+
+        else:
             try:
                 """If file is available it will 
                 read the file and append data"""
@@ -174,9 +198,6 @@ class Signup(tkinter.Toplevel):
                 pp = str({'Username': 'Password'})
                 file.write(pp)
                 file.close()
-        else:
-            """Shows an error dialog box"""
-            messagebox.showerror("Invalid", "Both passwords don't match! Try again.")
 
     def return_login(self):
         """Method that will destroy
@@ -446,7 +467,8 @@ class Login(ctk.CTk):
             """Displays an error dialog box"""
             messagebox.showerror("Invalid", "Username and Password entered don't exist in the system.")
 
-    def signup_command(self):
+    @staticmethod
+    def signup_command():
         signup_window = Signup()
 
 
