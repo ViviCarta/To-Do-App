@@ -1,3 +1,6 @@
+"""This is the main application window
+that is linked to the login window"""
+
 from tkinter import *
 import customtkinter as ctk
 from PIL import ImageTk, Image
@@ -51,7 +54,7 @@ class ApplicationPage(ctk.CTk):
         self.scrollable_frame = ctk.CTkScrollableFrame(self, width=700, height=500, corner_radius=10,
                                                        fg_color="black", scrollbar_fg_color="black")
         self.scrollable_frame.place(x=160, y=250)
-        #
+
         """Create an entry widget
         within scrollable frame"""
         self.user_entry = ctk.CTkEntry(self.scrollable_frame, placeholder_text="Input task name here...",
@@ -59,7 +62,7 @@ class ApplicationPage(ctk.CTk):
                                        font=ctk.CTkFont("Arial", size=18, slant="italic"),
                                        border_color="white", height=40)
         self.user_entry.pack(fill="x")
-        #
+
         """Create a frame where initial
         tasks are placed inside the
         not completed category"""
@@ -197,3 +200,7 @@ class ApplicationPage(ctk.CTk):
 if __name__ == "__main__":
     app = ApplicationPage()
     app.mainloop()
+
+"""Will be making a separate module that will
+combine all windows; as well as change the linked
+windows into toplevel subclasses"""
