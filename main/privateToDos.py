@@ -177,6 +177,10 @@ class Signup(tkinter.Toplevel):
             """Shows an error dialog box"""
             messagebox.showerror("Empty Field Detected", "Please don't leave username field empty!")
 
+        elif username == "" and password != confirm_pass:
+            """Shows an error dialog box"""
+            messagebox.showerror("Invalid", "Please enter valid information!")
+
         elif username != "" and password != confirm_pass:
             """Shows an error dialog box"""
             messagebox.showerror("Invalid", "Both passwords don't match! Try again.")
