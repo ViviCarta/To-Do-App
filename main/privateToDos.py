@@ -508,14 +508,3 @@ class Login(ctk.CTk):
 if __name__ == "__main__":
     login = Login()
     login.mainloop()
-
-"""Credits:
-new.png by Floral Deco | Canva
-login.png by Floral Deco | Canva
-main2.png by Ajit Singh | Unsplash
-hide.png by Icons8 | Canva
-show.png by thanhloc123 | Canva
-custom tkinter by TomSchimansky | GitHub
-code tutorials from ParvatComputerTechnology | YouTube
-ctk tutorials from Code First With Hala | YouTube
-ctk login screen tutorials from PROGRAMMED | YouTube """
