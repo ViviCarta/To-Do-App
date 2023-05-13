@@ -1,6 +1,6 @@
-"""This is the sign-up window
-that will be linked to the
-login window with database"""
+"""This is the sign-up window that will be linked
+to the login window with a database for new account
+creation"""
 
 from tkinter import *
 from tkinter import messagebox
