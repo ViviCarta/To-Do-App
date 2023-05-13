@@ -121,7 +121,7 @@ class Signup(tkinter.Toplevel):
         self.separator_label.place(x=170, y=475)
 
         """Create a return to login button"""
-        self.return_button = ctk.CTkButton(self.border_frame, width=140, text="Return to Login", corner_radius=6,
+        self.return_button = ctk.CTkButton(self.border_frame, width=140, text="Return To Login", corner_radius=6,
                                            font=ctk.CTkFont("Arial", size=16), fg_color="black",
                                            hover_color="gray", text_color="white", command=self.return_login)
         self.return_button.place(x=180, y=520)
@@ -291,7 +291,7 @@ class ApplicationPage(tkinter.Toplevel):
         self.comp_label = ctk.CTkLabel(self.comp_frame, text="Completed",
                                        text_color="black",
                                        font=ctk.CTkFont("Times New Roman", size=20, weight="bold"))
-        self.task_listbox_2 = Listbox(self.comp_frame, width=80, height=5,
+        self.task_listbox_2 = Listbox(self.comp_frame, width=71, height=6,
                                       font=("Arial", 16), justify="center",
                                       selectbackground="gray", selectmode="single")
 
